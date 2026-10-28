@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Python Functions – 20 Assignments + 50 MCQs</title>
+<style>
+:root{--bg:#f4f5fa;--card:#fff;--text:#1c1e2b;--muted:#666a80;--line:#e1e3ee;--accent:#4f46e5;--code:#f0f1f8;--ok:#16a06a;--hint:#d98a00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13141c;--card:#1d1f2b;--text:#eceef8;--muted:#a0a4bd;--line:#323548;--accent:#8b84ff;--code:#13141c;--ok:#4cc38a;--hint:#f0b34a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13141c;--card:#1d1f2b;--text:#eceef8;--muted:#a0a4bd;--line:#323548;--accent:#8b84ff;--code:#13141c;--ok:#4cc38a;--hint:#f0b34a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:22px 16px 48px}
+.kicker{color:var(--accent);font-weight:700;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:1.5rem;margin:2px 0 14px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;font-size:.85rem}
+.pill{border:1px solid var(--line);background:var(--card);padding:3px 12px;border-radius:999px;color:var(--muted)}
+.pill.t{color:var(--accent);border-color:var(--accent);font-weight:600}
+.track{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:16px}
+#fill{height:100%;background:var(--accent);width:0;transition:width .25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font-size:1rem;margin:16px 0 6px}
+p{margin:8px 0}
+pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;font:13.5px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:6px 0}
+code{background:var(--code);padding:1px 6px;border-radius:5px;font-size:.9em}
+.box{border-left:4px solid var(--hint);background:var(--code);padding:10px 14px;border-radius:6px;margin-top:12px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+button{font:inherit;font-size:.92rem;border:1px solid var(--line);background:var(--card);color:var(--text);padding:8px 14px;border-radius:10px;cursor:pointer}
+button.p{background:var(--accent);border-color:var(--accent);color:#fff}
+button:disabled{opacity:.4;cursor:default}
+.rule{margin-top:16px;font-size:.9rem;color:var(--muted)}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;line-height:1.4}.good{border-color:var(--ok)!important;background:rgba(22,160,106,.16)!important}.bad{border-color:#d33!important;background:rgba(220,50,50,.14)!important}#qfill{height:100%;background:var(--accent);width:0;transition:width .25s}#qtext{white-space:pre-wrap;font-size:1.05rem}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker">Python • Function Assignments</div>
+<h1>Arguments in Functions – Business Problems</h1>
+<div class="btns" style="margin:0 0 14px"><button class="p" id="t1">📝 Assignments (20)</button><button id="t2">❓ MCQ Quiz (50)</button></div>
+<div id="asg">
+<div class="meta"><span class="pill" id="cnt"></span><span class="pill">Beginner → Intermediate</span><span class="pill t" id="topic"></span></div>
+<div class="track"><div id="fill"></div></div>
+<div class="card">
+<h2 id="title"></h2>
+<h3>🎯 Your Task</h3><div id="task"></div>
+<h3>🧪 Sample / Expected Output</h3><pre id="sample"></pre>
+<div class="box" id="hint" hidden><b>💡 Hint:</b> <span id="hintText"></span></div>
+<div id="sol" hidden><h3>✅ Solution</h3><pre id="code"></pre></div>
+<div class="btns">
+<button id="prev">← Previous</button>
+<button id="bh">💡 Show Hint</button>
+<button id="bs">✅ Show Solution</button>
+<button class="p" id="next">Next Assignment →</button>
+</div>
+</div>
+<p class="rule"><b>Student Rule:</b> Every solution must use a <b>function</b>. Use parameters and <b>return</b> wherever possible. Open the hint only if required, and check the solution only after attempting.</p>
+</div>
+<div id="quiz" hidden>
+<div class="meta"><span class="pill" id="qcnt"></span><span class="pill t" id="qscore"></span></div>
+<div class="track"><div id="qfill"></div></div>
+<div class="card"><h2 id="qtext"></h2><div id="opts"></div><div class="box" id="exp" hidden></div><div class="btns"><button class="p" id="qnext">Next →</button></div></div>
+</div>
+</div>
+<script>
+const A=[
+["Positional Arguments","Shop Bill","Write <code>calculate_bill(price, quantity)</code> that returns the total bill. Call it with positional arguments.","calculate_bill(250, 4)\n# 1000","Multiply the two parameters and <code>return</code> the result.",
+`def calculate_bill(price, quantity):
+    return price * quantity
+
+print(calculate_bill(250, 4))`],
+["Positional Arguments","Employee Salary","Write <code>total_salary(basic, hra, da)</code> that returns basic + HRA + DA.","total_salary(50000, 10000, 5000)\n# 65000","Order matters: the first value goes to <code>basic</code>, the second to <code>hra</code>, the third to <code>da</code>.",
+`def total_salary(basic, hra, da):
+    return basic + hra + da
+
+print(total_salary(50000, 10000, 5000))`],
+["Positional Arguments","Profit or Loss","Write <code>profit_or_loss(cost_price, selling_price)</code>. Return <code>\"Profit of X\"</code>, <code>\"Loss of X\"</code> or <code>\"No profit, no loss\"</code>. Then call it again with the two values swapped and see what happens.","profit_or_loss(800, 1000)\n# Profit of 200\nprofit_or_loss(1000, 800)\n# Loss of 200","Compare the two parameters with if / elif / else.",
+`def profit_or_loss(cost_price, selling_price):
+    if selling_price > cost_price:
+        return f"Profit of {selling_price - cost_price}"
+    elif selling_price < cost_price:
+        return f"Loss of {cost_price - selling_price}"
+    return "No profit, no loss"
+
+print(profit_or_loss(800, 1000))
+print(profit_or_loss(1000, 800))`],
+["Keyword Arguments","Customer Invoice","Write <code>invoice(customer, amount, city)</code> that returns a one-line text. Call it using <b>keyword arguments</b> in a different order than the definition.","invoice(city=\"Pune\", customer=\"Ravi\", amount=4500)\n# Invoice: Ravi from Pune owes Rs. 4500","With keywords, order does not matter: <code>name=value</code>.",
+`def invoice(customer, amount, city):
+    return f"Invoice: {customer} from {city} owes Rs. {amount}"
+
+print(invoice(city="Pune", customer="Ravi", amount=4500))`],
+["Keyword Arguments","Discounted Price","Write <code>final_price(price, discount_percent)</code> that returns the price after discount. Call it with keyword arguments.","final_price(discount_percent=10, price=2000)\n# 1800.0","Discount amount = price * discount_percent / 100.",
+`def final_price(price, discount_percent):
+    return price - (price * discount_percent / 100)
+
+print(final_price(discount_percent=10, price=2000))`],
+["Keyword Arguments","Simple Interest","Write <code>simple_interest(principal, rate, time)</code> using the formula P × R × T / 100. Call it with keyword arguments.","simple_interest(time=2, principal=10000, rate=5)\n# 1000.0","Formula: <code>principal * rate * time / 100</code>.",
+`def simple_interest(principal, rate, time):
+    return principal * rate * time / 100
+
+print(simple_interest(time=2, principal=10000, rate=5))`],
+["Default Arguments","GST Price","Write <code>price_with_gst(price, gst=18)</code>. If GST is not given, use 18%. Call it with and without the second value.","price_with_gst(1000)\n# 1180.0\nprice_with_gst(1000, 5)\n# 1050.0","Default values go in the function definition: <code>gst=18</code>.",
+`def price_with_gst(price, gst=18):
+    return price + (price * gst / 100)
+
+print(price_with_gst(1000))
+print(price_with_gst(1000, 5))`],
+["Default Arguments","Shipping Cost","Write <code>shipping_cost(order_value, fee=50)</code>. Shipping is free (0) if the order value is 500 or more, otherwise return <code>fee</code>.","shipping_cost(300)\n# 50\nshipping_cost(300, 80)\n# 80\nshipping_cost(700)\n# 0","Check <code>order_value &gt;= 500</code> first.",
+`def shipping_cost(order_value, fee=50):
+    if order_value >= 500:
+        return 0
+    return fee
+
+print(shipping_cost(300))
+print(shipping_cost(300, 80))
+print(shipping_cost(700))`],
+["Default Arguments","Welcome Message","Write <code>welcome(name, company=\"TechMart\")</code> that returns a welcome message for a customer.","welcome(\"Sneha\")\n# Welcome Sneha to TechMart!\nwelcome(\"Sneha\", \"BookWorld\")\n# Welcome Sneha to BookWorld!","Use an f-string with both parameters.",
+`def welcome(name, company="TechMart"):
+    return f"Welcome {name} to {company}!"
+
+print(welcome("Sneha"))
+print(welcome("Sneha", "BookWorld"))`],
+["*args","Total Sales","Write <code>total_sales(*amounts)</code> that accepts any number of daily sales amounts and returns their total.","total_sales(1200, 800, 1500)\n# 3500\ntotal_sales(500)\n# 500","<code>*amounts</code> collects all values into a tuple. Loop over it.",
+`def total_sales(*amounts):
+    total = 0
+    for a in amounts:
+        total += a
+    return total
+
+print(total_sales(1200, 800, 1500))
+print(total_sales(500))`],
+["*args","Average Rating","Write <code>average_rating(*ratings)</code> that returns the average of all customer ratings. If no rating is given, return 0.","average_rating(4, 5, 3, 4)\n# 4.0\naverage_rating()\n# 0","Check <code>len(ratings) == 0</code> first, to avoid division by zero.",
+`def average_rating(*ratings):
+    if len(ratings) == 0:
+        return 0
+    return sum(ratings) / len(ratings)
+
+print(average_rating(4, 5, 3, 4))
+print(average_rating())`],
+["*args","Best Sale of the Week","Write <code>highest_sale(*sales)</code> that returns the highest sale amount.","highest_sale(1200, 4500, 800, 3000)\n# 4500","Keep a variable <code>best</code>, update it in a loop (or use <code>max()</code>).",
+`def highest_sale(*sales):
+    best = sales[0]
+    for s in sales:
+        if s > best:
+            best = s
+    return best
+
+print(highest_sale(1200, 4500, 800, 3000))`],
+["**kwargs","Product Details","Write <code>show_product(**details)</code> that prints every detail as <code>key: value</code>.","show_product(name=\"Laptop\", brand=\"Dell\", price=55000)\n# name: Laptop\n# brand: Dell\n# price: 55000","<code>**details</code> is a dictionary. Loop with <code>details.items()</code>.",
+`def show_product(**details):
+    for key, value in details.items():
+        print(f"{key}: {value}")
+
+show_product(name="Laptop", brand="Dell", price=55000)`],
+["**kwargs","Order Summary","Write <code>order_summary(order_id, **items)</code>. Each keyword is an item name and its value is the quantity. Return the total number of items ordered.","order_summary(101, pen=10, notebook=5, bag=2)\n# 17","<code>order_id</code> is normal; the rest goes into <code>items</code>. Use <code>sum(items.values())</code>.",
+`def order_summary(order_id, **items):
+    print("Order ID:", order_id)
+    return sum(items.values())
+
+print(order_summary(101, pen=10, notebook=5, bag=2))`],
+["All Together","Final Invoice","Write <code>create_invoice(customer, *prices, gst=18, **extra)</code>. Total = sum of prices + GST. Print any extra details (like city, mobile), then return the final amount.","create_invoice(\"Amit\", 500, 1500, 1000, gst=12, city=\"Pune\")\n# city: Pune\n# 3360.0","Positional → <code>customer</code>, then <code>*prices</code>, then keyword-only <code>gst</code>, then <code>**extra</code>.",
+`def create_invoice(customer, *prices, gst=18, **extra):
+    total = sum(prices)
+    final = total + (total * gst / 100)
+    print("Customer:", customer)
+    for key, value in extra.items():
+        print(f"{key}: {value}")
+    return final
+
+print(create_invoice("Amit", 500, 1500, 1000, gst=12, city="Pune"))`],
+['Default Arguments','Electricity Bill','Write <code>electricity_bill(units, rate=7, fixed=100)</code> that returns units × rate + fixed charge. Call it with different combinations of arguments.','electricity_bill(120)\n# 940\nelectricity_bill(120, rate=9)\n# 1180','Both <code>rate</code> and <code>fixed</code> have defaults, so you can skip them or override only one by name.',
+`def electricity_bill(units, rate=7, fixed=100):
+    return units * rate + fixed
+
+print(electricity_bill(120))
+print(electricity_bill(120, rate=9))`],
+['Positional + Keyword','Employee ID Card','Write <code>id_card(name, dept, emp_id)</code> that returns <code>ID-&lt;emp_id&gt;: &lt;name&gt; (&lt;dept&gt;)</code>. Call it with the first value positional and the rest as keywords.','id_card("Asha", dept="HR", emp_id=102)\n# ID-102: Asha (HR)','Positional arguments must come first, keyword arguments after them.',
+`def id_card(name, dept, emp_id):
+    return f"ID-{emp_id}: {name} ({dept})"
+
+print(id_card("Asha", dept="HR", emp_id=102))`],
+['*args','Cart Total with Discount','Write <code>cart_total(discount, *prices)</code>. The first value is the discount percent and the rest are item prices. Return the total after discount.','cart_total(10, 500, 300, 200)\n# 900.0','<code>discount</code> takes the first value, <code>*prices</code> takes all the remaining ones. Total = sum(prices), then subtract the discount.',
+`def cart_total(discount, *prices):
+    total = sum(prices)
+    return total - (total * discount / 100)
+
+print(cart_total(10, 500, 300, 200))`],
+['**kwargs','Update Stock','Write <code>update_stock(stock, **changes)</code>. <code>stock</code> is a dictionary of item: quantity. Each keyword in <code>changes</code> is an item and the quantity to add (negative to reduce). Return the updated dictionary.','update_stock({"pen": 50, "book": 20}, pen=10, book=-5)\n# {\'pen\': 60, \'book\': 15}','Loop over <code>changes.items()</code> and update <code>stock[item]</code>. Use <code>stock.get(item, 0)</code> for new items.',
+`def update_stock(stock, **changes):
+    for item, qty in changes.items():
+        stock[item] = stock.get(item, 0) + qty
+    return stock
+
+print(update_stock({"pen": 50, "book": 20}, pen=10, book=-5))`],
+['All Together','Salary Slip','Write <code>salary_slip(name, basic, *deductions, bonus=0, **info)</code>. Net salary = basic − sum of deductions + bonus. Print the name and every extra info, then return the net salary.','salary_slip("Neha", 40000, 1000, 2000, bonus=5000, city="Pune")\n# Name: Neha\n# city: Pune\n# 42000','Order: normal → <code>*deductions</code> → keyword-only <code>bonus</code> → <code>**info</code>.',
+`def salary_slip(name, basic, *deductions, bonus=0, **info):
+    print("Name:", name)
+    for key, value in info.items():
+        print(f"{key}: {value}")
+    return basic - sum(deductions) + bonus
+
+print(salary_slip("Neha", 40000, 1000, 2000, bonus=5000, city="Pune"))`]
+];
+const Q=[
+['Which keyword is used to define a function in Python?',['function','def','define','fun'],1,'Functions start with the def keyword.'],
+['Which statement sends a value back from a function?',['send','output','return','yield only'],2,'return gives the result back to the caller.'],
+['Names written inside the brackets in def add(a, b) are called?',['arguments','parameters','variables only','values'],1,'In the definition they are parameters.'],
+['Values passed when you call add(5, 3) are called?',['parameters','arguments','keywords','defaults'],1,'Values in the call are arguments.'],
+['What does a function return if it has no return statement?',['0','Empty string','None','Error'],2,'It returns None by default.'],
+['How do you call a function named hello that takes no parameters?',['hello','call hello','hello()','def hello()'],2,'Use the name followed by brackets.'],
+['Which is a correct function definition?',['def add(a, b):','function add(a, b):','def add(a, b)','add def(a, b):'],0,'def, name, brackets and a colon.'],
+['What is the main benefit of using functions?',['Code reuse','Slower code','More variables','Less memory always'],0,'One function can be reused many times.'],
+['A variable created inside a function is?',['Global','Local','Constant','Static'],1,'It exists only inside that function.'],
+['Can a function return multiple values?',['No, never','Yes, as a tuple','Only two values','Only with print'],1,'return a, b returns a tuple.'],
+['def sub(a, b): return a - b\nWhat is sub(10, 3)?',['7','-7','13','Error'],0,'a=10 and b=3, so 10-3=7.'],
+['def sub(a, b): return a - b\nWhat is sub(3, 10)?',['7','-7','13','Error'],1,'a=3 and b=10, so 3-10=-7. Order matters.'],
+['Positional arguments are matched to parameters by?',['Name','Type','Position','Size'],2,'First value goes to first parameter, and so on.'],
+['def f(a, b, c): ...\nWhat happens with f(1, 2)?',['Works fine','TypeError','Returns None','c becomes 0'],1,'Missing required argument c gives TypeError.'],
+['def f(a, b): ...\nWhat happens with f(1, 2, 3)?',['Works fine','Ignores 3','TypeError','SyntaxError'],2,'Too many positional arguments gives TypeError.'],
+['def show(name, age): print(name, age)\nWhat does show(21, "Ravi") print?',['Ravi 21','21 Ravi','Error','name age'],1,'Positions decide: name=21, age="Ravi".'],
+['Which call passes arguments by position?',['f(a=1, b=2)','f(1, 2)','f(**d)','f(b=2, a=1)'],1,'Plain values without names are positional.'],
+['Which is the syntax of a keyword argument?',['name:value','name=value','name->value','value=name'],1,'Use name=value in the call.'],
+['def intro(name, city): ...\nIs intro(city="Pune", name="Ravi") valid?',['No','Yes, order does not matter','Only with defaults','SyntaxError'],1,'Keyword arguments can be in any order.'],
+['def intro(name, city): ...\nWhat happens with intro("Ravi", name="Amit")?',['Works','TypeError: multiple values for name','Uses Amit','Uses Ravi'],1,'name gets two values.'],
+['Which call is a SyntaxError?',['f(1, b=2)','f(a=1, b=2)','f(a=1, 2)','f(1, 2)'],2,'Positional argument cannot follow a keyword argument.'],
+['def f(a, b): return a - b\nWhat is f(b=2, a=10)?',['8','-8','12','Error'],0,'a=10, b=2, so 8.'],
+['Main advantage of keyword arguments?',['Faster code','Readable calls, order not important','Less memory','No parameters needed'],1,'Names make the call clear.'],
+['def f(a, b): return a - b\nIs f(10, b=3) valid?',['Yes','No','Only in Python 2','Only if b has default'],0,'Positional first, then keyword is allowed.'],
+['def f(a, b=5): return a + b\nWhat is f(2)?',['2','5','7','Error'],2,'b uses default 5, so 2+5=7.'],
+['def f(a, b=5): return a + b\nWhat is f(2, 3)?',['5','7','8','Error'],0,'Passed value 3 overrides the default, 2+3=5.'],
+['Which definition is invalid?',['def f(a, b=1):','def f(a=1, b):','def f(a=1, b=2):','def f(a):'],1,'Non-default parameter cannot follow a default one.'],
+['A default value is used when?',['Always','The argument is not passed','Argument is None only','Never'],1,'It is a fallback when no value is given.'],
+['def f(x, y=2, z=3): return x + y + z\nWhat is f(1, z=10)?',['6','13','14','Error'],1,'1 + 2 + 10 = 13.'],
+['Where should default parameters be placed?',['Before normal parameters','After normal parameters','Anywhere','Only first'],1,'Default parameters come after non-default ones.'],
+['def greet(name="Guest"): return "Hi " + name\nWhat is greet()?',['Hi','Hi Guest','Error','Hi name'],1,'No argument, so default Guest is used.'],
+['*args collects extra positional arguments into a?',['list','tuple','dictionary','set'],1,'args is a tuple.'],
+['def f(*args): print(len(args))\nWhat does f(1, 2, 3) print?',['1','2','3','Error'],2,'Three values go into args.'],
+['def f(*args): print(len(args))\nWhat does f() print?',['0','None','Error','1'],0,'No extra arguments, so args is empty.'],
+['def total(*n): return sum(n)\nWhat is total(1, 2, 3, 4)?',['4','6','10','Error'],2,'1+2+3+4=10.'],
+['Is the name args mandatory in *args?',['Yes','No, only the * matters','Only in Python 3','Yes, for functions only'],1,'args is a convention; *nums also works.'],
+['def f(a, *b): print(a, b)\nWhat does f(1, 2, 3) print?',['1 2 3','1 (2, 3)','(1, 2) 3','Error'],1,'a=1 and b=(2, 3).'],
+['What is the data type of args inside def f(*args)?',['list','dict','tuple','str'],2,'Always a tuple.'],
+['What does f(*[1, 2, 3]) do?',['Passes a list','Unpacks into 1, 2, 3','Multiplies','Error'],1,'* in a call unpacks the list into separate arguments.'],
+['def f(*args): ...\nWhat happens with f(a=1)?',['Works','TypeError','args=(1,)','None'],1,'*args cannot take keyword arguments.'],
+['**kwargs collects extra keyword arguments into a?',['tuple','list','dictionary','string'],2,'kwargs is a dictionary.'],
+['def f(**kw): print(kw)\nWhat does f(a=1, b=2) print?',["{'a': 1, 'b': 2}",'(1, 2)','[1, 2]','Error'],0,'Keywords become keys of a dictionary.'],
+['def f(**kw): ...\nWhat happens with f(1, 2)?',['Works','TypeError','kw={1,2}','None'],1,'**kwargs accepts only keyword arguments.'],
+['Which method gives key-value pairs of kwargs?',['kwargs.keys()','kwargs.items()','kwargs.pairs()','kwargs.all()'],1,'items() returns (key, value) pairs.'],
+['def f(**d): return len(d)\nWhat is f(x=1, y=2, z=3)?',['1','2','3','Error'],2,'Three keys in the dictionary.'],
+['Which parameter order is valid?',['def f(**kw, *args)','def f(a, *args, **kw)','def f(**kw, a)','def f(*args, a, **kw, b)'],1,'Normal, *args, then **kwargs.'],
+['f(**{"a": 1, "b": 2}) is the same as?',['f(1, 2)','f(a=1, b=2)','f({"a":1})','f(*a, *b)'],1,'** unpacks a dictionary into keyword arguments.'],
+['def f(a, b=2, *args): print(args)\nWhat does f(1, 2, 3, 4) print?',['(3, 4)','(1, 2, 3, 4)','(2, 3, 4)','()'],0,'a=1, b=2, the remaining go to args.'],
+['Which definition is invalid?',['def f(a, *args, **kw):','def f(**kw, *args):','def f(*args, **kw):','def f(a, b=1, **kw):'],1,'*args must come before **kwargs.'],
+['def f(a, *args, **kw): print(a, args, kw)\nWhat does f(1, 2, 3, x=4) print?',["1 (2, 3) {'x': 4}",'1 2 3 4','1 (2, 3, 4) {}','Error'],0,'a=1, args=(2, 3), kw={x: 4}.']
+];
+let i=0;
+const $=id=>document.getElementById(id);
+function show(){
+  const a=A[i];
+  $("cnt").textContent="Assignment "+(i+1)+" / "+A.length;
+  $("topic").textContent=a[0];
+  $("title").textContent=(i+1)+". "+a[1];
+  $("task").innerHTML="<p>"+a[2]+"</p>";
+  $("sample").textContent=a[3];
+  $("hintText").innerHTML=a[4];
+  $("code").textContent=a[5];
+  $("hint").hidden=true;$("sol").hidden=true;
+  $("bh").textContent="💡 Show Hint";$("bs").textContent="✅ Show Solution";
+  $("fill").style.width=((i+1)/A.length*100)+"%";
+  $("prev").disabled=i===0;
+  $("next").disabled=i===A.length-1;
+  $("next").textContent=i===A.length-1?"All done 🎉":"Next Assignment →";
+}
+function tog(el,btn,on,off){el.hidden=!el.hidden;btn.textContent=el.hidden?on:off}
+$("prev").onclick=()=>{if(i>0){i--;show()}};
+$("next").onclick=()=>{if(i<A.length-1){i++;show()}};
+$("bh").onclick=()=>tog($("hint"),$("bh"),"💡 Show Hint","🙈 Hide Hint");
+$("bs").onclick=()=>tog($("sol"),$("bs"),"✅ Show Solution","🙈 Hide Solution");
+document.addEventListener("keydown",e=>{if($("asg").hidden)return;if(e.key==="ArrowRight")$("next").click();if(e.key==="ArrowLeft")$("prev").click()});
+show();
+function tab(q){$("asg").hidden=q;$("quiz").hidden=!q;$("t1").className=q?"":"p";$("t2").className=q?"p":""}
+$("t1").onclick=()=>tab(false);$("t2").onclick=()=>tab(true);
+let qi=0,sc=0,ans=false;
+function qshow(){
+  if(qi>=Q.length){$("qcnt").textContent="Finished";$("qtext").textContent="🎉 Your score: "+sc+" / "+Q.length;$("opts").innerHTML="";$("exp").hidden=true;$("qnext").textContent="Restart";$("qfill").style.width="100%";return}
+  const q=Q[qi];ans=false;
+  $("qcnt").textContent="Question "+(qi+1)+" / "+Q.length;$("qscore").textContent="Score: "+sc;
+  $("qtext").textContent=q[0];$("exp").hidden=true;
+  $("qfill").style.width=((qi+1)/Q.length*100)+"%";
+  $("qnext").textContent=qi===Q.length-1?"Finish":"Next →";
+  const o=$("opts");o.innerHTML="";
+  q[1].forEach((t,k)=>{const b=document.createElement("button");b.className="opt";b.textContent=String.fromCharCode(65+k)+". "+t;
+    b.onclick=()=>{if(ans)return;ans=true;if(k===q[2]){sc++;b.classList.add("good")}else{b.classList.add("bad");o.children[q[2]].classList.add("good")}
+      $("qscore").textContent="Score: "+sc;$("exp").textContent="💡 "+q[3];$("exp").hidden=false};
+    o.appendChild(b)});
+}
+$("qnext").onclick=()=>{if(qi>=Q.length){qi=0;sc=0}else{qi++}qshow()};
+qshow();
+</script>
+</body>
+</html>
